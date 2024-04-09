@@ -1,0 +1,58 @@
+{
+  "Creatures": [
+    "bvuzfgt2"
+  ],
+  "Creatures.bvuzfgt2": {
+    "Id": "bvuzfgt2",
+    "Name": "New Creature",
+    "Path": "",
+    "Link": "Creatures",
+    "SearchHint": "",
+    "FilterDimensions": {
+      "Level": "",
+      "Source": "",
+      "Type": ""
+    },
+    "LastUpdateMs": 1712674093860,
+    "Version": "3.10.0",
+    "Source": "",
+    "Type": "",
+    "HP": {
+      "Value": 1,
+      "Notes": "(1d1+0)"
+    },
+    "AC": {
+      "Value": 10,
+      "Notes": ""
+    },
+    "InitiativeModifier": 0,
+    "InitiativeAdvantage": false,
+    "Speed": [],
+    "Abilities": {
+      "Str": 10,
+      "Dex": 10,
+      "Con": 10,
+      "Int": 10,
+      "Wis": 10,
+      "Cha": 10
+    },
+    "DamageVulnerabilities": [],
+    "DamageResistances": [],
+    "DamageImmunities": [],
+    "ConditionImmunities": [],
+    "Saves": [],
+    "Skills": [],
+    "Senses": [],
+    "Languages": [],
+    "Challenge": "",
+    "Traits": [],
+    "Actions": [],
+    "BonusActions": [],
+    "Reactions": [],
+    "LegendaryActions": [],
+    "MythicActions": [],
+    "Description": "",
+    "Player": "",
+    "ImageURL": ""
+  }
+}
