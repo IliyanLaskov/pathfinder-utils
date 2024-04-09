@@ -33,9 +33,9 @@ def parsestrikes():
                 rangedcontent = f'{rangedcontent} ({strike['traits']})'
             rangedcontent = f'{rangedcontent}, Damage {strike["damage"]}\n'
     if meleecontent != "":
-        actions.append({"Name": "Melee", "Content": meleecontent, "Usage": ""})
+        actions.append({"Name": "Melee", "Content": meleecontent})
     if rangedcontent != "":
-        actions.append({"Name": "Ranged", "Content": rangedcontent, "Usage": ""})
+        actions.append({"Name": "Ranged", "Content": rangedcontent})
     return actions
 
 
@@ -44,7 +44,7 @@ def parsespecialactions():
     for special in sourceCreature['specials']:
         if special['actions'] != "none":
             description = f'{special['actions']} action(s)\n{special["description"]}'
-            actions.append({"Name": special['name'], "Content": description, "Usage": ""})
+            actions.append({"Name": special['name'], "Content": description})
     return actions
 
 
@@ -52,7 +52,7 @@ def parsespecialactiontraits():
     traits = []
     for special in sourceCreature['specials']:
         if special['actions'] == "none":
-            traits.append({"Name": special['name'], "Content": special["description"], "Usage": ""})
+            traits.append({"Name": special['name'], "Content": special["description"]})
     return traits
 
 
@@ -74,7 +74,7 @@ newCreature = json.loads(new)
 newCreature['Creatures.bvuzfgt2']['Name'] = sourceCreature['name']
 newCreature['Creatures.bvuzfgt2']['InitiativeModifier'] = sourceCreature['perception']['value']
 newCreature['Creatures.bvuzfgt2']['Senses'] = [sourceCreature['perception']['note']]
-newCreature['Creatures.bvuzfgt2']['Languages'] = sourceCreature['languages']
+newCreature['Creatures.bvuzfgt2']['Languages'] = [sourceCreature['languages']]
 newCreature['Creatures.bvuzfgt2']['Skills'] = parseskills()
 newCreature['Creatures.bvuzfgt2']['Traits'] = parsespecialactiontraits()
 
