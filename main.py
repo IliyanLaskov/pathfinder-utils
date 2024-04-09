@@ -1,5 +1,6 @@
 import json
 import shutil
+import random
 
 
 def abconvert(ability):
@@ -62,7 +63,7 @@ def parseaction():
 shutil.copyfile("ii-creature-template.json", "new_creature.json")
 
 # read file
-with open('KoboldWarrior.pf2.tools.json', 'r') as file:
+with open('GiantRat1712692659.json', 'r') as file:
     source = file.read()
 sourceCreature = json.loads(source)
 
@@ -70,32 +71,41 @@ with open('new_creature.json', 'r') as file:
     new = file.read()
 newCreature = json.loads(new)
 
+rid = str(random.randrange(10000000, 99999999))
+newid = f'Creatures.{rid}'
+
+newCreature[newid] = newCreature['Creatures.templateID']
+newCreature.pop('Creatures.templateID')
+newCreature['Creatures'] = [rid]
+
 # parse description
-newCreature['Creatures.bvuzfgt2']['Name'] = sourceCreature['name']
-newCreature['Creatures.bvuzfgt2']['InitiativeModifier'] = sourceCreature['perception']['value']
-newCreature['Creatures.bvuzfgt2']['Senses'] = [sourceCreature['perception']['note']]
-newCreature['Creatures.bvuzfgt2']['Languages'] = [sourceCreature['languages']]
-newCreature['Creatures.bvuzfgt2']['Skills'] = parseskills()
-newCreature['Creatures.bvuzfgt2']['Traits'] = parsespecialactiontraits()
+newCreature[newid]['Id'] = rid
+newCreature[newid]['Name'] = sourceCreature['name']
+newCreature[newid]['InitiativeModifier'] = sourceCreature['perception']['value']
+newCreature[newid]['Senses'] = [sourceCreature['perception']['note']]
+if 'languages' in sourceCreature:
+    newCreature[newid]['Languages'] = [sourceCreature['languages']]
+newCreature[newid]['Skills'] = parseskills()
+newCreature[newid]['Traits'] = parsespecialactiontraits()
 
 # parse combat stats
-newCreature['Creatures.bvuzfgt2']['HP']['Value'] = sourceCreature['hp']['value']
-newCreature['Creatures.bvuzfgt2']['AC']['Value'] = sourceCreature['ac']['value']
-newCreature['Creatures.bvuzfgt2']['Speed'] = [sourceCreature['speed']]
-newCreature['Creatures.bvuzfgt2']['Saves'] = [
+newCreature[newid]['HP']['Value'] = sourceCreature['hp']['value']
+newCreature[newid]['AC']['Value'] = sourceCreature['ac']['value']
+newCreature[newid]['Speed'] = [sourceCreature['speed']]
+newCreature[newid]['Saves'] = [
     {"Name": "Fort", "Modifier": sourceCreature['fortitude']['value']},
     {"Name": "Ref", "Modifier": sourceCreature['reflex']['value']},
     {"Name": "Will", "Modifier": sourceCreature['will']['value']}
 ]
-newCreature['Creatures.bvuzfgt2']['Actions'] = parseaction()
+newCreature[newid]['Actions'] = parseaction()
 
 # parse attribute scores
-newCreature['Creatures.bvuzfgt2']['Abilities']['Str'] = abconvert(sourceCreature['strength']['value'])
-newCreature['Creatures.bvuzfgt2']['Abilities']['Dex'] = abconvert(sourceCreature['dexterity']['value'])
-newCreature['Creatures.bvuzfgt2']['Abilities']['Con'] = abconvert(sourceCreature['constitution']['value'])
-newCreature['Creatures.bvuzfgt2']['Abilities']['Int'] = abconvert(sourceCreature['intelligence']['value'])
-newCreature['Creatures.bvuzfgt2']['Abilities']['Wis'] = abconvert(sourceCreature['wisdom']['value'])
-newCreature['Creatures.bvuzfgt2']['Abilities']['Cha'] = abconvert(sourceCreature['charisma']['value'])
+newCreature[newid]['Abilities']['Str'] = abconvert(sourceCreature['strength']['value'])
+newCreature[newid]['Abilities']['Dex'] = abconvert(sourceCreature['dexterity']['value'])
+newCreature[newid]['Abilities']['Con'] = abconvert(sourceCreature['constitution']['value'])
+newCreature[newid]['Abilities']['Int'] = abconvert(sourceCreature['intelligence']['value'])
+newCreature[newid]['Abilities']['Wis'] = abconvert(sourceCreature['wisdom']['value'])
+newCreature[newid]['Abilities']['Cha'] = abconvert(sourceCreature['charisma']['value'])
 
 with open('new_creature.json', 'w') as file:
     json.dump(newCreature, file)

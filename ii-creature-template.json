@@ -1,9 +1,9 @@
 {
   "Creatures": [
-    "bvuzfgt2"
+    "templateID"
   ],
-  "Creatures.bvuzfgt2": {
-    "Id": "bvuzfgt2",
+  "Creatures.templateID": {
+    "Id": "templateID",
     "Name": "New Creature",
     "Path": "",
     "Link": "Creatures",
